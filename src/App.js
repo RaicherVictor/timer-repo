@@ -33,7 +33,7 @@ function App() {
         let strings = zer.split("\n");
         let times = [];
         let sum = 0;
-        let days = [];
+        let days = 0;
         _.each(strings, s => {
           let t;
           if (s.split(" = ")[1]) {
@@ -49,21 +49,26 @@ function App() {
           }
           console.log(s.split(" ").toString(),'?')
           console.log(s.split(" ")[1],'?')
-          if (s.split("\t")[1]) {
+          if (s.split(/\t| /)[1]) {
             console.log('wowo')
-            let date = new Date(Date.parse(s.split("	")[1]));
+            let date = new Date(Date.parse(s.split(/\t| /)[1]));
             let day = date.getDay();
-            if (day != 0 && day != 6) {
-              days.push(date);
+            if (day !== 0 && day !== 6) {
+              days=days+1;
             }
           }
         });
-        let actualTime= new Date(sum*1000).toISOString();
-
+        let actualTime= new Date(sum*1000);
+        let actHour = (actualTime.getUTCHours() + (actualTime.getUTCDate()-1) * 24).toString()
+        let actMin = actualTime.getUTCMinutes().toString()
+        let actSec = actualTime.getUTCSeconds().toString()
+        console.log(days,"dny")
+        console.log(actualTime)
+        console.log(actHour,"часы")
         setResult({
-          totalTime: actualTime.substring(actualTime.length - 13, actualTime.length - 5),
-           daysCount: days.length,
-           hours_norma: days.length * 8.5
+          totalTime: (actHour + ":" + actMin + ":" + actSec),
+           daysCount: days,
+          hours_norma: days * 8.5
          });
         
       }}>Нажми меня!</button>
