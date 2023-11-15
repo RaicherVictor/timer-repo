@@ -2,6 +2,9 @@ import {TextInput} from "react-native"
 import './App.css';
 import _, { parseInt } from "lodash"
 import {useState} from "react"
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import logo from './logo.svg';
 
 const DEF_TXT = 
 `         25\t2019-11-25	08:30:00 Normal	=> 00:00:00 - 10:05:58 = 10:05:58 
@@ -13,14 +16,44 @@ const DEF_TXT =
 					=> 21:33:47 - 23:11:51 = 01:38:04`;
 
 function App() {
-  let zer = DEF_TXT;
+  let zer = "";
   let [result,setResult]= useState("");
   return (
+    <><header style={{ 
+      height: 50, width: 1840,backgroundColor:"blueviolet" 
+    }}>Raicher</header>
+     <Nav defaultActiveKey="/home" className="flex-sm-column" style={{
+          backgroundColor:"blue", float:"left",width:50,height:1500}
+          }>
+          <Nav.Link href="/home"> </Nav.Link>
+
+          <Nav.Link eventKey="link-1"> </Nav.Link>
+
+          <Nav.Link eventKey="link-2"> </Nav.Link>
+
+          <Nav.Link eventKey="disabled" disabled>
+             
+          </Nav.Link>
+      </Nav>
+    <Container style={{backgroundColor:"purple",borderWidth:2,float:"left",width:1100}}>   
     <div className="App">
+      
+        
+      {/* <div class="widget">
+        <ul class="widget-list">
+          <li></li>
+          <li>Фотошоп</li>
+          <li>Типографика</li>
+          <li>Музыка</li>
+          <li>Видео</li>
+        </ul>
+      </div> */}
+      
       <TextInput
         multiline={true}
         numberOfLines={10}
-        style={{ height: 500,width:950,borderStyle: "solid", borderWidth:2 }} 
+        style={{ height: 500,width:950,borderStyle: "solid", borderWidth:2,float:"left" }} 
+      
         onChange={function(event){
             zer=event.target.value;
             console.log(zer)
@@ -28,6 +61,11 @@ function App() {
       }>
         {zer}
       </TextInput>
+      
+  
+      <div id="totalTime" style={{float:"left"}}>TotalTime:{result.totalTime}</div>
+      <div id="daysCount"style={{float:"left"}}>Count of days:{result.daysCount}</div>
+      <div id="hours_norma"style={{float:"left"}}>Everyday Normal:{result.hours_norma}</div>
       <button onClick={function(){
         console.log(result);
         let strings = zer.split("\n");
@@ -70,13 +108,10 @@ function App() {
            daysCount: days,
           hours_norma: days * 8.5
          });
-        
-      }}>Нажми меня!</button>
-      <div id="totalTime">{result.totalTime}</div>
-      <div id="daysCount">{result.daysCount}</div>
-      <div id="hours_norma">{result.hours_norma}</div>
+      }}style={{float:"bottom"}}>Нажми меня!</button>
     </div>
-    
+    </Container>
+    </>
   );
 }
 
