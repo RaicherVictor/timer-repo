@@ -25,14 +25,14 @@ function App() {
      <Nav defaultActiveKey="/home" className="flex-sm-column" style={{
           backgroundColor:"blue", float:"left",width:50,height:1500}
           }>
-          <Nav.Link href="/home"> </Nav.Link>
+          <Nav.Link href="/home">home </Nav.Link>
 
-          <Nav.Link eventKey="link-1"> </Nav.Link>
+          <Nav.Link eventKey="link-1">link </Nav.Link>
 
-          <Nav.Link eventKey="link-2"> </Nav.Link>
+          <Nav.Link eventKey="link-2">news </Nav.Link>
 
           <Nav.Link eventKey="disabled" disabled>
-             
+             about
           </Nav.Link>
       </Nav>
     <Container style={{backgroundColor:"purple",borderWidth:2,float:"left",width:1100}}>   
